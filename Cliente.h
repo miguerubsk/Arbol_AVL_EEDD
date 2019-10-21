@@ -37,7 +37,7 @@ class Cliente {
     public:
         //Constructor
 
-        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0) {
+        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), itinerarios() {
         }
 
         Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud) :
