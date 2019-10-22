@@ -19,6 +19,7 @@
 #include "fecha.h"
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
+#include <iostream>
 
 using namespace std;
 
@@ -51,13 +52,17 @@ class Cliente {
         string GetNOMBRE() const {
             return nombre;
         }
+        
+        string GetDIRECCION() const {
+            return direccion;
+        }
 
         UTM GetUTM() const {
             return posicion;
         }
 
         bool operator==(const Cliente& orig) {
-            std::size_t found = this->nombre.find(orig.nombre);
+            std::size_t found = this->dni.find(orig.dni);
 
             if (found != std::string::npos)
                 return true;
@@ -66,11 +71,11 @@ class Cliente {
         }
 
         bool operator<(Cliente& right) const {
-            return (nombre < right.nombre);
+            return (dni < right.dni);
         }
 
         bool operator>(Cliente& right) const {
-            return (nombre > right.nombre);
+            return (dni > right.dni);
         }
 
         void SetDireccion(string direccion) {
@@ -119,8 +124,18 @@ class Cliente {
                 itinerarios.insertarFinal(viaje);
             }
         }
-
-
+        //IMPLEMENTAR
+        void desbloquearMoto(std::string id){};
+        //IMPLEMENTAR
+        void terminarTrayecto(){};
+        //IMPLEMENTAR
+        pair<UTM, std::string> buscarMotoCercana(){};
+        //CORREGIR
+        ostream& operator<<(ostream & os, const Cliente & obj)
+        {
+	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << obj.GetUTM() << "\n";
+        }
+        
 
 };
 
