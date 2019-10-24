@@ -6,10 +6,8 @@
                    projectFiles="true">
       <itemPath>AVL.h</itemPath>
       <itemPath>Cliente.h</itemPath>
-      <itemPath>EcoCityMoto.h</itemPath>
       <itemPath>Itinerario.h</itemPath>
       <itemPath>ListaDEnlazada.h</itemPath>
-      <itemPath>Moto.h</itemPath>
       <itemPath>UTM.h</itemPath>
       <itemPath>fecha.h</itemPath>
       <itemPath>random.h</itemPath>
@@ -22,9 +20,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>EcoCityMoto.cpp</itemPath>
       <itemPath>Itinerario.cpp</itemPath>
-      <itemPath>Moto.cpp</itemPath>
       <itemPath>fecha.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -54,19 +50,11 @@
       </item>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EcoCityMoto.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EcoCityMoto.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Itinerario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Itinerario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Moto.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Moto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UTM.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -105,19 +93,11 @@
       </item>
       <item path="Cliente.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="EcoCityMoto.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="EcoCityMoto.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="Itinerario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Itinerario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ListaDEnlazada.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="Moto.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="Moto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UTM.h" ex="false" tool="3" flavor2="0">
       </item>

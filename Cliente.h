@@ -124,17 +124,17 @@ class Cliente {
                 itinerarios.insertarFinal(viaje);
             }
         }
-        //IMPLEMENTAR
-        void desbloquearMoto(std::string id){};
-        //IMPLEMENTAR
-        void terminarTrayecto(){};
-        //IMPLEMENTAR
-        pair<UTM, std::string> buscarMotoCercana(){};
+//        //IMPLEMENTAR
+//        void desbloquearMoto(std::string id){};
+//        //IMPLEMENTAR
+//        void terminarTrayecto(){};
+//        //IMPLEMENTAR
+//        pair<UTM, std::string> buscarMotoCercana(){};
         //CORREGIR
-        ostream& operator<<(ostream & os, const Cliente & obj)
-        {
-	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << obj.GetUTM() << "\n";
-        }
+//        ostream& operator<<(ostream & os, const Cliente & obj)
+//        {
+//	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << obj.GetUTM() << "\n";
+//        }
         
 
 };

@@ -23,6 +23,8 @@
 #include "vectordinamico.h"
 #include "ListaDEnlazada.h"
 #include "Cliente.h"
+#include "random.h"
+#include "AVL.h"
 
 
 using namespace std;
@@ -169,60 +171,77 @@ int main(int argc, char** argv) {
 //    //Aqui mostramos el tiempo que tarda en calcular la distancia para hacernos una idea de la eficiencia de dicha eedd
 //    cout << "Tiempo de cálculo: " << time << " segundos\n";
 
-    vectordinamico<Cliente> v; 
-     double mayorLon, mayorLat, menorLon, menorLat;
-     setlocale(LC_ALL,"es_ES.UTF8"); 
+//    vectordinamico<Cliente> v; 
+//     double mayorLon, mayorLat, menorLon, menorLat;
+//     setlocale(LC_ALL,"es_ES.UTF8"); 
+//    
+//     try{   
+//       cout << "Comienzo de lectura de un fichero " << endl;    
+//       leeClientes ("clientes_v2.csv",v);
+//       MaxMinLatLon(v, mayorLon, mayorLat, menorLon, menorLat);
+//       //mostramos vector ordenado              
+//       for (long int i=0; i<v.tam(); ++i)
+//           std::cout<<  i << ": " << v[i].GetNOMBRE() << ";" << v[i].GetDNI() <<std::endl; 
+//
+//       std::cout << " Total de clientes ordenados: " << v.tam() << std::endl;
+//        
+//       cout << "Mayor longitud: " << mayorLon << std::endl;
+//       cout << "Menor longitud: " << menorLon << std::endl;
+//       cout << "Mayor latitud: " << mayorLat << std::endl;
+//       cout << "Menor latitud: " << menorLat << std::endl;
+//       
+//       //Creamos itinerarios aleatorios a cada Cliente
+//       unsigned long int IdUltimo=0;
+//       for (long int i=0; i<v.tam(); ++i){
+//           unsigned num=rand()%10+1;
+//           v[i].crearItinerarios(num,IdUltimo,UTM(menorLat,menorLon),UTM(mayorLat,mayorLon));
+//           IdUltimo+=num;
+//           cout << "Cliente " << i << " creado con " << num << " Itinerarios" << endl;
+//       }
+//       
+//     //Tratamiento de errores
+//     }catch (ErrorFechaIncorrecta &e){
+//            std::cerr << "Fecha Incorrecta: " << std::endl;
+//     }catch (std::runtime_error &e){ //std::ifstream::failure &e){
+//            std::cerr << "Excepcion en fichero: " <<  std::endl;
+//     }catch (std::bad_alloc &e){
+//            std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
+//     }
+//       
+//     //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+//    ListaDEnlazada<int> e1;
+//    for(int i=0; i<20;i++){
+//        e1.insertarInicio(i);
+//    }
+//    Iterador<int> it=e1.iteradorInicio();
+//    for(int i=0; i<e1.getNumeroelementos();i++){    
+//    cout<<"Dato nº "<<i<<" : "<<it.getDato()<<endl;
+//    it.siguiente();
+//    }
+//    cout<<"---------------CONSTRUCTOR COPIA----------"<<endl;
+//    ListaDEnlazada<int> e2(e1);
+//    Iterador<int> it1=e2.iteradorInicio();
+//    for(int i=0; i<e2.getNumeroelementos();i++){    
+//    cout<<"Dato nº "<<i<<" : "<<it1.getDato()<<endl;
+//    it1.siguiente();
+//    }
+////PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
     
-     try{   
-       cout << "Comienzo de lectura de un fichero " << endl;    
-       leeClientes ("clientes_v2.csv",v);
-       MaxMinLatLon(v, mayorLon, mayorLat, menorLon, menorLat);
-       //mostramos vector ordenado              
-       for (long int i=0; i<v.tam(); ++i)
-           std::cout<<  i << ": " << v[i].GetNOMBRE() << ";" << v[i].GetDNI() <<std::endl; 
-
-       std::cout << " Total de clientes ordenados: " << v.tam() << std::endl;
-        
-       cout << "Mayor longitud: " << mayorLon << std::endl;
-       cout << "Menor longitud: " << menorLon << std::endl;
-       cout << "Mayor latitud: " << mayorLat << std::endl;
-       cout << "Menor latitud: " << menorLat << std::endl;
-       
-       //Creamos itinerarios aleatorios a cada Cliente
-       unsigned long int IdUltimo=0;
-       for (long int i=0; i<v.tam(); ++i){
-           unsigned num=rand()%10+1;
-           v[i].crearItinerarios(num,IdUltimo,UTM(menorLat,menorLon),UTM(mayorLat,mayorLon));
-           IdUltimo+=num;
-           cout << "Cliente " << i << " creado con " << num << " Itinerarios" << endl;
-       }
-       
-     //Tratamiento de errores
-     }catch (ErrorFechaIncorrecta &e){
-            std::cerr << "Fecha Incorrecta: " << std::endl;
-     }catch (std::runtime_error &e){ //std::ifstream::failure &e){
-            std::cerr << "Excepcion en fichero: " <<  std::endl;
-     }catch (std::bad_alloc &e){
-            std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
-     }
-       
-     //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
-    ListaDEnlazada<int> e1;
-    for(int i=0; i<20;i++){
-        e1.insertarInicio(i);
+    AVL<int> avl;
+    int a=0;
+    int result;
+    for(int i=0; i<30; i++){
+        avl.inserta(i);
     }
-    Iterador<int> it=e1.iteradorInicio();
-    for(int i=0; i<e1.getNumeroelementos();i++){    
-    cout<<"Dato nº "<<i<<" : "<<it.getDato()<<endl;
-    it.siguiente();
+    cout<<"La altura del arbol es: "<<avl.altura()<<endl;
+    cout<<"Nº elementos del arbol es: "<<avl.numElementos()<<endl;
+    cout<<"Introduzca el numero que desee buscar en el arbol: "<<endl;
+    cin>>a;
+    if(avl.busca(a,result)){
+        cout<<"El numero "<<a<<" esta en el avl"<<endl;
+    }else{
+        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
     }
-    cout<<"---------------CONSTRUCTOR COPIA----------"<<endl;
-    ListaDEnlazada<int> e2(e1);
-    Iterador<int> it1=e2.iteradorInicio();
-    for(int i=0; i<e2.getNumeroelementos();i++){    
-    cout<<"Dato nº "<<i<<" : "<<it1.getDato()<<endl;
-    it1.siguiente();
-    }
-//PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+    avl.recorreInorden();
     return 0;
 }
