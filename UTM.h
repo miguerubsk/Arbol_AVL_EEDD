@@ -13,6 +13,10 @@
 
 #ifndef UTM_H
 #define UTM_H
+#include <iostream>
+
+using namespace std;
+
  class UTM{
  private:
     double latitud;
@@ -26,7 +30,12 @@
     double GetLatitud() const {
         return latitud;
     }
-
+    
+    friend ostream& operator<<(ostream & os, const UTM & obj)
+    {
+    return os << "Latitud: " << obj.latitud << " | " << "Longitud: " << obj.longitud << "\n";
+    }
+    
  };
 
 

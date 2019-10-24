@@ -29,6 +29,14 @@ public:
     Moto();
     Moto(const Moto& orig);
     virtual ~Moto();
+    bool operator<(Moto& right) const {
+        return (id < right.id);
+    }
+
+    bool operator>(Moto& right) const {
+        return (id > right.id);
+    }
+    
 private:
     std::string id;
     UTM posicion;
