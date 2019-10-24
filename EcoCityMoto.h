@@ -19,6 +19,7 @@
 #include "AVL.h"
 //#include "Cliente.h"
 class Cliente;
+class Moto;
 
 class EcoCityMoto {
 public:

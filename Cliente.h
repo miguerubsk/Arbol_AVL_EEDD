@@ -131,11 +131,12 @@ class Cliente {
 //        //IMPLEMENTAR
 //        pair<UTM, std::string> buscarMotoCercana(){};
         //CORREGIR
-//        ostream& operator<<(ostream & os, const Cliente & obj)
-//        {
-//	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << obj.GetUTM() << "\n";
-//        }
-        
+
+                friend ostream& operator<<(ostream & os, const Cliente & obj)
+        {
+	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << "\n";
+        }
+
 
 };
 
