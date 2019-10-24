@@ -17,8 +17,10 @@
 #include "vectordinamico.h"
 #include "Moto.h"
 #include "AVL.h"
-//#include "Cliente.h"
-class Cliente;
+#include <fstream>
+#include <sstream>
+#include "Cliente.h"
+
 class Moto;
 
 class EcoCityMoto {
@@ -26,10 +28,12 @@ public:
     EcoCityMoto();
     EcoCityMoto(const EcoCityMoto& orig);
     virtual ~EcoCityMoto();
+    void cargarClientes(std::string filename);
+    void cargarMotos(std::string filename);
 private:
     unsigned int idUltimo;
     vectordinamico<Moto> motos;
-    AVL<Cliente*> clientes;
+    AVL<Cliente> clientes;
 
 };
 
