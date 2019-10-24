@@ -6,7 +6,7 @@
 
 /* 
  * File:   Cliente.h
- * Author: Miguerubsk
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 23 de septiembre de 2019, 22:30
  */
@@ -15,15 +15,17 @@
 #define CLIENTE_H
 
 //#include "UTM.h"
-#include "random.h"
 //#include "fecha.h"
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
-#include <iostream>
+//#include "Moto.h"
+#include "random.h"
+//#include <iostream>
 
 using namespace std;
 
-
+//class Moto;
+//class UTM;
 class Cliente {
     
     private:
@@ -31,18 +33,22 @@ class Cliente {
         string pass;
         string nombre;
         string direccion;
-        ListaDEnlazada<Itinerario> itinerarios;
+        ListaDEnlazada<Itinerario> rutas;
         UTM posicion;
+        Moto *matricula;
 
     
     public:
         //Constructor
 
-        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), itinerarios() {
+        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas() {
         }
 
         Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud) :
         dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud) {
+        }
+        
+        ~Cliente() {
         }
 
         string GetDNI() const {
@@ -121,7 +127,7 @@ class Cliente {
                             Randfloat(min.GetLongitud(),max.GetLongitud()));
                 int minutos = rand()%100;
                 Itinerario viaje(++IdUltimo,inicio,fin,f,minutos);
-                itinerarios.insertarFinal(viaje);
+                rutas.insertarFinal(viaje);
             }
         }
 //        //IMPLEMENTAR

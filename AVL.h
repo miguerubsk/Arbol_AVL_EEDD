@@ -6,14 +6,13 @@
 
 /* 
  * File:   AVL.h
- * Author: Fernando
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on October 22, 2019, 4:13 PM
  */
 
 #ifndef AVL_H
 #define AVL_H
-
 #include <iostream>
 
 template <typename U>
@@ -66,12 +65,7 @@ template <typename T>
 AVL<T>::AVL(const AVL<T> & origen) {
 }
 
-template <typename T>
-AVL<T>::~AVL() {
-    borrar(raiz);
-    numEle = 0;
-    raiz = 0;
-}
+
 
 template <typename T>
 void AVL<T>::operator=(AVL<T>& orig) {
@@ -211,6 +205,13 @@ void AVL<T>::borrar(NodoAVL<T>* p) {
         delete p;
         p=0;
     }
+}
+
+template <typename T>
+AVL<T>::~AVL() {
+    borrar(raiz);
+    numEle = 0;
+    raiz = 0;
 }
 
 #endif /* AVL_H */

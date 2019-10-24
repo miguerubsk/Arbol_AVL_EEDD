@@ -6,7 +6,7 @@
 
 /* 
  * File:   Itinerario.h
- * Author: Miguerubsk
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 5 de octubre de 2019, 11:33
  */
@@ -15,9 +15,12 @@
 #define ITINERARIO_H
 
 #include "fecha.h"
-#include <cstdlib>
+//#include <cstdlib>
 #include "UTM.h"
+//#include "Moto.h"
 
+class Moto;
+//class UTM;
 
 class Itinerario {
 public:
@@ -70,6 +73,7 @@ private:
     int id, minutos;
     UTM inicio, fin;
     Fecha fecha;
+    Moto *vehiculo;
 
 };
 

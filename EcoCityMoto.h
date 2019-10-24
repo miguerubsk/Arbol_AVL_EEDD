@@ -6,7 +6,7 @@
 
 /* 
  * File:   EcoCityMoto.h
- * Author: Fernando
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on October 24, 2019, 12:07 PM
  */
@@ -15,21 +15,22 @@
 #define ECOCITYMOTO_H
 
 #include "vectordinamico.h"
-#include "Moto.h"
 #include "AVL.h"
-//#include "Cliente.h"
-class Cliente;
-class Moto;
+#include "Cliente.h"
+#include "Moto.h"
+//class Cliente;
+//class Moto;
 
 class EcoCityMoto {
 public:
     EcoCityMoto();
     EcoCityMoto(const EcoCityMoto& orig);
     virtual ~EcoCityMoto();
+    Moto localizaMotoCercana(UTM ubicacion);
 private:
     unsigned int idUltimo;
     vectordinamico<Moto> motos;
-    AVL<Cliente*> clientes;
+    AVL<Cliente> clientes;
 
 };
 

@@ -6,7 +6,7 @@
 
 /* 
  * File:   UTM.h
- * Author: admin
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on 3 de octubre de 2019, 13:58
  */
@@ -37,7 +37,6 @@ using namespace std;
     }
     
  };
-
 
 #endif /* UTM_H */
 

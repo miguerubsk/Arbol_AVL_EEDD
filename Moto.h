@@ -6,7 +6,7 @@
 
 /* 
  * File:   Moto.h
- * Author: Fernando
+ * Author: Miguel González García y Fernando Jiménez Quesada
  *
  * Created on October 24, 2019, 12:07 PM
  */
