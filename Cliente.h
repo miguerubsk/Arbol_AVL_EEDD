@@ -14,9 +14,9 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-#include "UTM.h"
+//#include "UTM.h"
 #include "random.h"
-#include "fecha.h"
+//#include "fecha.h"
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
 #include <iostream>
