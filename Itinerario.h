@@ -15,13 +15,9 @@
 #define ITINERARIO_H
 
 #include "fecha.h"
-//#include <cstdlib>
-#include "UTM.h"
 //#include "Moto.h"
-
+#include "UTM.h"
 class Moto;
-//class UTM;
-
 class Itinerario {
 public:
     Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos);

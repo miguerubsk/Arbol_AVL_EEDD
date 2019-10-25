@@ -14,15 +14,16 @@
 #ifndef MOTO_H
 #define MOTO_H
 
-#include <string>
 #include "UTM.h"
-//#include "Cliente.h"
-class Cliente;
+#include <string>
+
 struct Estado{
     std::string estado;
     Estado():estado("bloqueada"){}
     Estado(std::string _estado): estado(_estado){}
 };
+
+class Cliente;
 
 class Moto {
 public:

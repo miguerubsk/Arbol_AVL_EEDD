@@ -1,23 +1,21 @@
 build/Debug/MinGW-Windows/EcoCityMoto.o: EcoCityMoto.cpp EcoCityMoto.h \
- vectordinamico.h AVL.h Cliente.h Itinerario.h fecha.h UTM.h \
- ListaDEnlazada.h random.h Moto.h
+ Cliente.h Moto.h UTM.h Itinerario.h fecha.h ListaDEnlazada.h \
+ vectordinamico.h AVL.h
 
 EcoCityMoto.h:
 
-vectordinamico.h:
-
-AVL.h:
-
 Cliente.h:
+
+Moto.h:
+
+UTM.h:
 
 Itinerario.h:
 
 fecha.h:
 
-UTM.h:
-
 ListaDEnlazada.h:
 
-random.h:
+vectordinamico.h:
 
-Moto.h:
+AVL.h:

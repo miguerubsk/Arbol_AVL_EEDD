@@ -14,18 +14,20 @@
 #ifndef CLIENTE_H
 #define CLIENTE_H
 
-//#include "UTM.h"
-//#include "fecha.h"
+class EcoCityMoto;
+
+#include <random>
+#include "Moto.h"
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
-//#include "Moto.h"
-#include "random.h"
-//#include <iostream>
+#include <ctime>
+#include <time.h>
 
 using namespace std;
 
+
 //class Moto;
-//class UTM;
+        
 class Cliente {
     
     private:
@@ -36,6 +38,7 @@ class Cliente {
         ListaDEnlazada<Itinerario> rutas;
         UTM posicion;
         Moto *matricula;
+        EcoCityMoto *acceso;
 
     
     public:
@@ -118,17 +121,41 @@ class Cliente {
         }
 
         void crearItinerarios(int num, int IdUltimo, const UTM &min, const UTM &max){
-            Set_random(rand());
-            for (int i=0; i<num; i++){
-                Fecha f(rand()%28+1,rand()%12+1,rand()%10+2019);
-                UTM inicio( Randfloat(min.GetLatitud(),max.GetLatitud()),
-                            Randfloat(min.GetLongitud(),max.GetLongitud()));
-                UTM fin( Randfloat(min.GetLatitud(),max.GetLatitud()),
-                            Randfloat(min.GetLongitud(),max.GetLongitud()));
-                int minutos = rand()%100;
-                Itinerario viaje(++IdUltimo,inicio,fin,f,minutos);
-                rutas.insertarFinal(viaje);
-            }
+//            Set_random(rand());
+//            for (int i=0; i<num; i++){
+//                Fecha f(rand()%28+1,rand()%12+1,rand()%10+2019);
+//                UTM inicio( Randfloat(min.GetLatitud(),max.GetLatitud()),
+//                            Randfloat(min.GetLongitud(),max.GetLongitud()));
+//                UTM fin( Randfloat(min.GetLatitud(),max.GetLatitud()),
+//                            Randfloat(min.GetLongitud(),max.GetLongitud()));
+//                int minutos = rand()%100;
+//                Itinerario viaje(++IdUltimo,inicio,fin,f,minutos);
+//                rutas.insertarFinal(viaje);
+//            }
+        double lat;
+        double longi;
+        for (int i = 0; i < num; i++) {
+            //GENERAR COORDENADAS RANDOM
+            std::mt19937 rnd(std::time(NULL));
+            std::uniform_real_distribution<> latitud(min.GetLatitud(), max.GetLatitud());
+            std::uniform_real_distribution<> longitud(min.GetLongitud(), max.GetLongitud());
+            UTM inicio(latitud(rnd), longitud(rnd));
+            UTM fin(latitud(rnd), longitud(rnd));
+
+            //GENERAR FECHA RANDOM
+            Fecha fechaRandom;
+            srand(time(NULL) + IdUltimo + i);
+            int dia = 1 + rand() % (28 - 1);
+            int mes = 1 + rand() % (12 - 1);
+            int hora = 0 + rand() % (24 - 0);
+            int minutos = 0 + rand() % (60 - 0);
+            fechaRandom.asignarDia(dia, mes, 2019);
+            fechaRandom.asignarHora(hora, minutos);
+
+            int minutosRandom = 0 + rand() % (120 - 0);
+            Itinerario itinerarioAux(++IdUltimo, inicio, fin, fechaRandom, minutosRandom);
+            rutas.insertarFinal(itinerarioAux);
+        }
         }
 //        //IMPLEMENTAR
 //        void desbloquearMoto(std::string id){};

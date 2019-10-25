@@ -14,12 +14,9 @@
 #ifndef ECOCITYMOTO_H
 #define ECOCITYMOTO_H
 
+#include "Cliente.h"
 #include "vectordinamico.h"
 #include "AVL.h"
-#include "Cliente.h"
-#include "Moto.h"
-//class Cliente;
-//class Moto;
 
 class EcoCityMoto {
 public:
