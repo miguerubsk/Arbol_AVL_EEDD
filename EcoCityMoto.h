@@ -17,13 +17,19 @@
 #include "Cliente.h"
 #include "vectordinamico.h"
 #include "AVL.h"
+#include <fstream>
+#include <sstream>
+
+
 
 class EcoCityMoto {
 public:
     EcoCityMoto();
     EcoCityMoto(const EcoCityMoto& orig);
     virtual ~EcoCityMoto();
-    Moto localizaMotoCercana(UTM ubicacion);
+    void cargarClientes(std::string filename);
+    void cargarMotos(std::string filename);
+
 private:
     unsigned int idUltimo;
     vectordinamico<Moto> motos;
