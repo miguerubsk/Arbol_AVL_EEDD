@@ -29,6 +29,12 @@ public:
     virtual ~EcoCityMoto();
     void cargarClientes(std::string filename);
     void cargarMotos(std::string filename);
+    AVL<Cliente>* GetAVL() {
+        return &clientes;
+    }
+        vectordinamico<Moto>* Getvectordinamico() {
+        return &motos;
+    }
 
 private:
     unsigned int idUltimo;

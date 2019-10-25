@@ -118,21 +118,17 @@ void MaxMinLatLon(vectordinamico<Cliente> v, double &maxLon, double &maxLat, dou
 }
 int main(int argc, char** argv) {
   
-    AVL<int> avl;
-    int a=0;
-    int result;
-    for(int i=0; i<30; i++){
-        avl.inserta(i);
-    }
-    cout<<"La altura del arbol es: "<<avl.altura()<<endl;
-    cout<<"Nº elementos del arbol es: "<<avl.numElementos()<<endl;
-    cout<<"Introduzca el numero que desee buscar en el arbol: "<<endl;
-    cin>>a;
-    if(avl.busca(a,result)){
-        cout<<"El numero "<<a<<" esta en el avl"<<endl;
-    }else{
-        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
-    }
-    avl.recorreInorden();
+    
+    EcoCityMoto eco;
+    eco.cargarClientes("clientes_v2.csv");
+    eco.cargarMotos("motos.txt");
+    
+    cout<<"Altura del arbol: "<<eco.GetAVL()->altura()<<endl;
+    cout<<"Nº de clientes: "<<eco.GetAVL()->numElementos()<<endl;
+    
+    
+    cout<<"Nº de motos: "<<eco.Getvectordinamico()->tam()<<endl;
+    
+    
     return 0;
 }

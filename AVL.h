@@ -15,6 +15,8 @@
 #define AVL_H
 #include <iostream>
 
+#include "ListaDEnlazada.h"
+
 template <typename U>
 class NodoAVL {
 public:
@@ -52,6 +54,8 @@ public:
         numEle++;
         return inserta(raiz, dato);
     }
+    T recorreInordenaux(NodoAVL<T> *p, int nivel);
+    void copiar(NodoAVL<T> *& dest, NodoAVL<T> * orig);
     unsigned int numElementos();
     unsigned int altura();
 };
@@ -59,13 +63,20 @@ public:
 template <typename T>
 AVL<T>::AVL() {
     raiz = 0;
+    numEle=0;
 }
 
 template <typename T>
 AVL<T>::AVL(const AVL<T> & origen) {
+//    if(origen.numElementos()!=0){     
+//    }
 }
 
+template <class T>
+void AVL<T>::copiar(NodoAVL<T>* &dest, NodoAVL<T> * orig)
+{
 
+}
 
 template <typename T>
 void AVL<T>::operator=(AVL<T>& orig) {
@@ -136,6 +147,15 @@ void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
         std::cout << "Procesando nodo " << p->dato;
         std::cout << " en el nivel " << nivel << std::endl;
         recorreInorden(p->der, nivel + 1);
+    }
+}
+
+template <class T>
+T AVL<T>::recorreInordenaux(NodoAVL<T> *p, int nivel) {
+    if (p) {
+        recorreInordenaux(p->izq, nivel + 1);
+        return p->dato;
+        recorreInordenaux(p->der, nivel + 1);
     }
 }
 

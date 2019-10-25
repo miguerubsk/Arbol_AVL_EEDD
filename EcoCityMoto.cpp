@@ -13,7 +13,7 @@
 
 #include "EcoCityMoto.h"
 
-EcoCityMoto::EcoCityMoto() {
+EcoCityMoto::EcoCityMoto(): clientes(), motos(), idUltimo(0){
 }
 
 EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) {
@@ -129,12 +129,12 @@ void EcoCityMoto::cargarMotos(std::string filename){
                 Moto moto(mat, dlat, dlon, aux);
                 motos.insertar(moto);
                 if (total % 100 == 0) {
-                    std::cout << "Leido cliente " << total << "\n  ";
+                    std::cout << "Leida moto " << total << "\n  ";
                 }
             }
         }
 
-        std::cout << "Total de clientes en el fichero: " << total - 1 << std::endl;
+        std::cout << "Total de motos en el fichero: " << total - 1 << std::endl;
         fe.close(); //Cerramos el flujo de entrada
     } else {
         std::cerr << "No se puede abrir el fichero" << std::endl;
