@@ -23,7 +23,7 @@
 #include "vectordinamico.h"
 #include "ListaDEnlazada.h"
 #include "Cliente.h"
-#include "random.h"
+//#include "random.h"
 #include "AVL.h"
 
 
