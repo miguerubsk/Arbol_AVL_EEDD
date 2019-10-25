@@ -18,22 +18,29 @@
 #include "UTM.h"
 //#include "Cliente.h"
 class Cliente;
-struct Estado{
-    std::string estado;
-    Estado():estado("bloqueada"){}
-    Estado(std::string _estado): estado(_estado){}
-};
+
+enum Status {bloqueada, activa, sinbateria, rota};
+
 
 class Moto {
 public:
     Moto();
+    Moto(std::string _id, double _latitud, double _longitud, int _estado) :
+        id(_id), posicion(_latitud, _longitud) {
+        switch(_estado){
+            case 0: estado = bloqueada;
+            case 1: estado = activa;
+            case 2: estado = sinbateria;
+            case 3: estado = rota;
+        }
+    }
     Moto(const Moto& orig);
     virtual ~Moto();
 private:
     std::string id;
     UTM posicion;
     Cliente *usadoPor;
-    Estado estatus;
+    Status estado;
 };
 
 #endif /* MOTO_H */
