@@ -30,6 +30,23 @@ public:
     virtual ~EcoCityMoto();
     void cargarClientes(std::string filename);
     void cargarMotos(std::string filename);
+    AVL<Cliente> getClientes() const {
+        return clientes;
+    }
+
+    unsigned int getIdUltimo() const {
+        return idUltimo;
+    }
+
+    void setIdUltimo(unsigned int idUltimo) {
+        this->idUltimo = idUltimo;
+    }
+
+    vectordinamico<Moto> getMotos() const {
+        return motos;
+    }
+
+
 private:
     unsigned int idUltimo;
     vectordinamico<Moto> motos;
