@@ -34,10 +34,6 @@ public:
         return clientes;
     }
 
-    void setClientes(AVL<Cliente> clientes) {
-        this->clientes = clientes;
-    }
-
     unsigned int getIdUltimo() const {
         return idUltimo;
     }
@@ -50,9 +46,6 @@ public:
         return motos;
     }
 
-    void setMotos(vectordinamico<Moto> motos) {
-        this->motos = motos;
-    }
 
 private:
     unsigned int idUltimo;
