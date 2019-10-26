@@ -39,11 +39,12 @@ private:
     void rotIzqda(NodoAVL <T>* &p);
     void rotDecha(NodoAVL <T>* &p);
     void borrar(NodoAVL<T>* p);
+    void copia(NodoAVL<T>* &q,NodoAVL<T> *p);
 public:
     AVL<T>();
-    AVL<T>(const AVL<T> & origen); //@TODO terminar constructor copia
+    AVL<T>(const AVL<T> & origen);
     virtual ~AVL();
-    void operator=(AVL<T>& orig); //@TODO terminar operador de asignacion
+    AVL<T>& operator=(const AVL<T>& orig);
     bool busca(T& dato, T& result);
     bool buscaIt(T& dato, T& result);
     void recorreInorden() {
@@ -57,6 +58,16 @@ public:
     unsigned int altura();
 };
 
+template<typename T>
+void AVL<T>::copia(NodoAVL<T>* &q,NodoAVL<T> *p){
+    if (p){
+        q= new NodoAVL<T> (*p);
+        copia(q->izq,p->izq);
+        copia(q->der,p->der);
+    }else
+        q=0;
+}
+
 template <typename T>
 AVL<T>::AVL() {
     raiz = 0;
@@ -64,6 +75,7 @@ AVL<T>::AVL() {
 
 template <typename T>
 AVL<T>::AVL(const AVL<T> & origen) {
+    copia(raiz,origen.raiz);
 }
 
 template <typename T>
@@ -73,9 +85,13 @@ AVL<T>::~AVL() {
     raiz = 0;
 }
 
-template <typename T>
-void AVL<T>::operator=(AVL<T>& orig) {
-    raiz = orig.raiz;
+template<typename T>
+AVL<T>& AVL<T>::operator=(const AVL<T>& orig){
+    if (this!=&orig){
+        borrar(raiz);
+        copia(raiz,orig.raiz);
+    }
+    return *this;
 }
 
 template<typename T>
@@ -135,7 +151,7 @@ int AVL<T>::inserta(NodoAVL<T>* &c, T &dato) {
     return deltaH;
 }
 
-template <class T>
+template <typename T>
 void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
     if (p) {
         recorreInorden(p->izq, nivel + 1);
@@ -145,12 +161,12 @@ void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
     }
 }
 
-template <class T>
+template <typename T>
 unsigned int AVL<T>::numElementos() {
     return numEle;
 }
 
-template <class T>
+template <typename T>
 unsigned int AVL<T>::altura() {
     return altura_aux(this->raiz);
 }
@@ -164,7 +180,7 @@ int AVL<T>::altura_aux(NodoAVL<T> *p) {
 
 }
 
-template <class T>
+template <typename T>
 NodoAVL<T> *AVL<T>::buscaClave(T &ele, NodoAVL<T> *p) {
     if (!p)
         return 0;
@@ -175,7 +191,7 @@ NodoAVL<T> *AVL<T>::buscaClave(T &ele, NodoAVL<T> *p) {
     else return p;
 }
 
-template <class T>
+template <typename T>
 bool AVL<T>::busca(T &ele, T &result) {
     NodoAVL<T> *p = buscaClave(ele, raiz);
     if (p) {
@@ -205,11 +221,11 @@ bool AVL<T>::buscaIt(T& dato, T& result) {
 
 template<typename T>
 void AVL<T>::borrar(NodoAVL<T>* p) {
-    if (p) {
-        borrar(p->izq);
-        borrar(p->der);
-        delete p;
-        p=0;
+    if (p){
+         borrar(p->izq);
+         borrar(p->der);
+         delete p;
+         p=0;
     }
 }
 
