@@ -28,6 +28,7 @@
 
 using namespace std;
 
+class EcoCityMoto;
 
 class Cliente {
     
@@ -37,6 +38,7 @@ class Cliente {
         string nombre;
         string direccion;
         ListaDEnlazada<Itinerario> rutas;
+        EcoCityMoto *acceso;
         UTM posicion;
 
     
@@ -46,8 +48,8 @@ class Cliente {
         Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas() {
         }
 
-        Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud) :
-        dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud) {
+        Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud, EcoCityMoto *_acceso=0) :
+        dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso) {
         }
 
         string GetDNI() const {

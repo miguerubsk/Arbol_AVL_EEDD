@@ -22,3 +22,14 @@ Moto::Moto(const Moto& orig) {
 Moto::~Moto() {
 }
 
+UTM Moto::getPosicion() const {
+    return posicion;
+}
+
+std::string Moto::getId() const {
+    return id;
+}
+
+Status Moto::getStatus() const {
+    return estado;
+}

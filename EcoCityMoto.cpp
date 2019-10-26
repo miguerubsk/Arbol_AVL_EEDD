@@ -22,6 +22,23 @@ EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) {
 EcoCityMoto::~EcoCityMoto() {
 }
 
+Moto* EcoCityMoto::LocalizaMotoCercana(UTM &ubicacion){
+    Moto *moto;
+    
+    double maxDistancia = 9999999999, distancia;
+    for(int i = 0; i<motos.tam()-1; i++){
+        if(motos[i].getStatus()==BLOQUEADA){
+            distancia=ubicacion.distancia(motos[i].getPosicion());
+            if(distancia<maxDistancia){
+                maxDistancia=distancia;
+                moto = &motos[i];
+            }
+        }
+    }
+    
+    return moto;
+}
+
 void EcoCityMoto::cargarClientes(std::string filename){
     std::ifstream fe; //Flujo de entrada
     std::string linea; //Cada linea tiene un clienete
@@ -46,7 +63,7 @@ void EcoCityMoto::cargarClientes(std::string filename){
                 ++total;
             }
 
-            if (total > 1) {
+            if (total >= 1) {
                 //Inicializamos el contenido de ss
                 ss << linea;
 
@@ -70,8 +87,7 @@ void EcoCityMoto::cargarClientes(std::string filename){
                 dlon = stod(longitud);
 
                 //con todos los atributos leidos, se crea el cliente
-                //                cout<<dni<<endl;
-                Cliente client(dni, pass, nombre, direccion, dlat, dlon);
+                Cliente client(dni, pass, nombre, direccion, dlat, dlon, this);
                 clientes.inserta(client);
                 if (total % 100 == 0) {
                     std::cout << "Leido cliente " << total << "\n  ";
@@ -106,7 +122,7 @@ void EcoCityMoto::cargarMotos(std::string filename){
                 ++total;
             }
 
-            if (total > 1) {
+            if (total >= 1) {
                 //Inicializamos el contenido de ss
                 ss << linea;
 
@@ -125,7 +141,6 @@ void EcoCityMoto::cargarMotos(std::string filename){
                 int aux = stoi(estado);
 
                 //con todos los atributos leidos, se crea la moto
-                //                cout<<dni<<endl;
                 Moto moto(mat, dlat, dlon, aux);
                 motos.insertar(moto);
                 if (total % 100 == 0) {

@@ -13,6 +13,10 @@
 
 #ifndef UTM_H
 #define UTM_H
+
+#include <math.h>
+
+
  class UTM{
  private:
     double latitud;
@@ -22,7 +26,9 @@
     double GetLongitud() const {
     return longitud;
     }
-
+    double distancia(const UTM &utm){
+        return sqrt(pow(utm.latitud-this->latitud,2)+pow(utm.longitud-this->longitud,2));
+    }
     double GetLatitud() const {
         return latitud;
     }

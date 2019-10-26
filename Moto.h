@@ -19,7 +19,7 @@
 //#include "Cliente.h"
 class Cliente;
 
-enum Status {bloqueada, activa, sinbateria, rota};
+enum Status {BLOQUEADA,ACTIVA,SINBATERIA,ROTA};
 
 
 class Moto {
@@ -28,12 +28,15 @@ public:
     Moto(std::string _id, double _latitud, double _longitud, int _estado) :
         id(_id), posicion(_latitud, _longitud) {
         switch(_estado){
-            case 0: estado = bloqueada;
-            case 1: estado = activa;
-            case 2: estado = sinbateria;
-            case 3: estado = rota;
+            case 0: estado = BLOQUEADA;
+            case 1: estado = ACTIVA;
+            case 2: estado = SINBATERIA;
+            case 3: estado = ROTA;
         }
     }
+    UTM getPosicion() const;
+    std::string getId() const;
+    Status getStatus() const;
     Moto(const Moto& orig);
     virtual ~Moto();
 private:
