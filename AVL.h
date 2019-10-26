@@ -6,7 +6,7 @@
 
 /* 
  * File:   AVL.h
- * Author: Fernando
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on October 22, 2019, 4:13 PM
  */
