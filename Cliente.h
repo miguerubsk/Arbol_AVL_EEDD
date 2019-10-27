@@ -17,8 +17,10 @@
 //#include "UTM.h"
 //#include "random.h"
 //#include "fecha.h"
+
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
+#include "EcoCityMoto.h"
 #include <iostream>
 #include <math.h>
 #include <random>
@@ -155,26 +157,16 @@ class Cliente {
             rutas.insertarFinal(itinerarioAux);
         }
         }
-
-        void desbloquearMoto(Moto *m){
-            acceso->desbloqueaMoto(m,this);
-        }
-//        //TODO
-        void terminarTrayecto(){
-            ListaDEnlazada<Itinerario>::Iterador i=rutas.iteradorFinal();
-            
-        }
-//        //IMPLEMENTAR
-        Moto * buscarMotoCercana(){
-            Moto* m=acceso->LocalizaMotoCercana(posicion);
-            return m;
-        }
+         void desbloquearMoto(Moto *m);
+         void terminarTrayecto();
+         Moto * buscarMotoCercana();
+        
         //CORREGIR
 
-                friend ostream& operator<<(ostream & os, const Cliente & obj)
-        {
-	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " | " << "\n";
-        }
+        friend ostream& operator<<(ostream & os, const Cliente & obj);
+//        {
+//	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " Id del ultimo " << obj.acceso->getIdUltimo()<< " | " << "\n";
+//        }
 
 
 };
