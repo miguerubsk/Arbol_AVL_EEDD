@@ -16,7 +16,7 @@
 Moto::Moto() {
 }
 
-Moto::Moto(const Moto& orig) {
+Moto::Moto(const Moto& orig): id(orig.id), usadoPor(orig.usadoPor), estado(orig.estado), posicion(orig.posicion) {
 }
 
 Moto::~Moto() {
