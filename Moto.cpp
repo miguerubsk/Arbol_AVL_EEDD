@@ -56,3 +56,7 @@ bool Moto::seActiva(Cliente *cli){
     usadoPor=cli;
 }
 
+void Moto::seDesactiva(){
+    estado=BLOQUEADA;
+    usadoPor=0;
+}
