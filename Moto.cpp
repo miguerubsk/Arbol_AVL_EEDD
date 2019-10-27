@@ -16,7 +16,7 @@
 Moto::Moto() {
 }
 
-Moto::Moto(const Moto& orig) {
+Moto::Moto(const Moto& orig): id(orig.id), usadoPor(orig.usadoPor), estado(orig.estado), posicion(orig.posicion) {
 }
 
 Moto::~Moto() {
@@ -32,4 +32,31 @@ std::string Moto::getId() const {
 
 Status Moto::getStatus() const {
     return estado;
+}
+
+Moto& Moto::operator=(const Moto &orig) {
+        if (this!=&orig){
+            id=orig.id;            
+            posicion=orig.posicion;
+            usadoPor=orig.usadoPor;          
+        }
+        return *this;
+}
+
+bool Moto::operator<(const Moto &orig){
+        return id<orig.id;
+}
+
+bool Moto::operator==(const Moto &orig) {  //para ordenar las motos
+        return id==orig.id;
+}
+
+bool Moto::seActiva(Cliente *cli){
+    estado=ACTIVA;
+    usadoPor=cli;
+}
+
+void Moto::seDesactiva(){
+    estado=BLOQUEADA;
+    usadoPor=0;
 }
