@@ -39,6 +39,7 @@ public:
     Status getStatus() const;
     Moto(const Moto& orig);
     virtual ~Moto();
+    Moto& operator=(const Moto &orig);
 private:
     std::string id;
     UTM posicion;

@@ -33,3 +33,12 @@ std::string Moto::getId() const {
 Status Moto::getStatus() const {
     return estado;
 }
+
+Moto& Moto::operator=(const Moto &orig) {
+        if (this!=&orig){
+            id=orig.id;            
+            posicion=orig.posicion;
+            usadoPor=orig.usadoPor;          
+        }
+        return *this;
+}
