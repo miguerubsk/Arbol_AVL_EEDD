@@ -39,6 +39,11 @@ Moto* EcoCityMoto::LocalizaMotoCercana(UTM &ubicacion){
     return moto;
 }
 
+void EcoCityMoto::desbloqueaMoto(Moto *moto, Cliente *cli){
+    moto->seActiva(cli);  
+    idUltimo++;  
+}
+
 void EcoCityMoto::cargarClientes(std::string filename){
     std::ifstream fe; //Flujo de entrada
     std::string linea; //Cada linea tiene un clienete
