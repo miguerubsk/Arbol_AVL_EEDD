@@ -155,12 +155,20 @@ class Cliente {
             rutas.insertarFinal(itinerarioAux);
         }
         }
+
+        void desbloquearMoto(Moto *m){
+            acceso->desbloqueaMoto(m,this);
+        }
+//        //TODO
+        void terminarTrayecto(){
+            ListaDEnlazada<Itinerario>::Iterador i=rutas.iteradorFinal();
+            
+        }
 //        //IMPLEMENTAR
-//        void desbloquearMoto(std::string id){};
-//        //IMPLEMENTAR
-//        void terminarTrayecto(){};
-//        //IMPLEMENTAR
-//        pair<UTM, std::string> buscarMotoCercana(){};
+        Moto * buscarMotoCercana(){
+            Moto* m=acceso->LocalizaMotoCercana(posicion);
+            return m;
+        }
         //CORREGIR
 
                 friend ostream& operator<<(ostream & os, const Cliente & obj)
