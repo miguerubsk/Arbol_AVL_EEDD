@@ -42,6 +42,7 @@ public:
     Moto& operator=(const Moto &orig);
     bool operator<(const Moto &orig);
     bool operator==(const Moto &orig);
+    bool seActiva(Cliente *cli);
 private:
     std::string id;
     UTM posicion;

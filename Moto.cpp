@@ -50,3 +50,9 @@ bool Moto::operator<(const Moto &orig){
 bool Moto::operator==(const Moto &orig) {  //para ordenar las motos
         return id==orig.id;
 }
+
+bool Moto::seActiva(Cliente *cli){
+    estado=ACTIVA;
+    usadoPor=cli;
+}
+
