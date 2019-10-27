@@ -42,3 +42,11 @@ Moto& Moto::operator=(const Moto &orig) {
         }
         return *this;
 }
+
+bool Moto::operator<(const Moto &orig){
+        return id<orig.id;
+}
+
+bool Moto::operator==(const Moto &orig) {  //para ordenar las motos
+        return id==orig.id;
+}

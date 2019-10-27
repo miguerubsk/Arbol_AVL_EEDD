@@ -40,6 +40,8 @@ public:
     Moto(const Moto& orig);
     virtual ~Moto();
     Moto& operator=(const Moto &orig);
+    bool operator<(const Moto &orig);
+    bool operator==(const Moto &orig);
 private:
     std::string id;
     UTM posicion;
