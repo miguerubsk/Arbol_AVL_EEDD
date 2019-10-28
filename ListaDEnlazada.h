@@ -6,7 +6,7 @@
 
 /* 
  * File:   ListaDEnlazada.h
- * Author: Miguel González García y Fernando Jiménez Quesada
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on 4 de octubre de 2019, 9:44
  */

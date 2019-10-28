@@ -6,7 +6,7 @@
 
 /* 
  * File:   UTM.h
- * Author: admin
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on 3 de octubre de 2019, 13:58
  */

@@ -6,24 +6,34 @@
 
 /* 
  * File:   EcoCityMoto.cpp
- * Author: Fernando
+ * Author: Fernando Jiménez Quesada y Miguel González García
  * 
  * Created on October 24, 2019, 12:07 PM
  */
 
 #include "EcoCityMoto.h"
-
+/**
+     * @brief contrusctor por defecto de EcoCityMoto
+**/
 EcoCityMoto::EcoCityMoto(): idUltimo(0), clientes(), motos() {
     cargarClientes("clientes_v2.csv");
     cargarMotos("motos.txt");
 }
-
-EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) {
+/**
+     * @brief funcion del contructor copia de EcoCityMoto
+**/
+EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig): clientes(orig.clientes), idUltimo(orig.idUltimo), motos(orig.motos) {
 }
-
+/**
+     * @brief destructor correspondiente de EcoCityMoto
+**/
 EcoCityMoto::~EcoCityMoto() {
 }
-
+/**
+ * @brief funcion para lozalizar la moto mas cercana utilizando la ubicacion proporcionada
+ * @param A es la ubicacion para poder utilizarla a la hora de buscar la moto
+ * @return devuelve la moto que ha encontrado
+ **/
 Moto* EcoCityMoto::LocalizaMotoCercana(UTM &ubicacion){
     Moto *moto;
     
@@ -40,12 +50,18 @@ Moto* EcoCityMoto::LocalizaMotoCercana(UTM &ubicacion){
     
     return moto;
 }
-
+/**
+ * @brief funcion para desbloquear la moto del cliente en cuestion
+ * @param A es la moto que deseas desbloquear
+ * @param B es el puntero al cliente responsable de dicha moto
+ **/
 void EcoCityMoto::desbloqueaMoto(Moto *moto, Cliente *cli){
-    moto->seActiva(cli);  
-    idUltimo++;  
+    moto->seActiva(cli);
 }
-
+/**
+ * @brief funcion para cargar los clientes en el avl de la clase
+ * @param A es el nombre del fichero
+ **/
 void EcoCityMoto::cargarClientes(std::string filename){
     ifstream fe; //Flujo de entrada
     string linea; //Cada linea tiene un clienete
@@ -109,7 +125,10 @@ void EcoCityMoto::cargarClientes(std::string filename){
         cerr << "No se puede abrir el fichero" << endl;
     }
 }
-
+/**
+ * @brief funcion para cargar las motos en el otro avl de EscoCityMotos
+ * @param A es el nombre del fichero
+ **/
 void EcoCityMoto::cargarMotos(std::string filename){
     std::ifstream fe; //Flujo de entrada
     std::string linea; //Cada linea tiene un clienete

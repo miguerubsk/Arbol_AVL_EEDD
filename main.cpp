@@ -6,7 +6,7 @@
 
 /* 
  * File:   main.cpp
- * Author: Fernando
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on 19 de septiembre de 2019, 13:07
  */
@@ -23,7 +23,6 @@
 #include "vectordinamico.h"
 #include "ListaDEnlazada.h"
 #include "Cliente.h"
-//#include "random.h"
 #include "AVL.h"
 
 

@@ -6,7 +6,7 @@
 
 /* 
  * File:   EcoCityMoto.h
- * Author: Fernando
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on October 24, 2019, 12:07 PM
  */

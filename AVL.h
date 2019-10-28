@@ -39,7 +39,7 @@ private:
     void rotIzqda(NodoAVL <T>* &p);
     void rotDecha(NodoAVL <T>* &p);
     void borrar(NodoAVL<T>* p);
-    void copia(NodoAVL<T>* &q,NodoAVL<T> *p);
+    void copia(NodoAVL<T>* &q, NodoAVL<T> *p);
 public:
     AVL<T>();
     AVL<T>(const AVL<T> & origen);
@@ -47,9 +47,11 @@ public:
     AVL<T>& operator=(const AVL<T>& orig);
     bool busca(T& dato, T& result);
     bool buscaIt(T& dato, T& result);
+
     void recorreInorden() {
         recorreInorden(raiz, 0);
     }
+
     bool inserta(T &dato) {
         numEle++;
         return inserta(raiz, dato);
@@ -58,27 +60,42 @@ public:
     unsigned int altura();
 };
 
+/**
+ * @brief funcion del contructor copia del avl
+ * @param A es el nodo del arbol inicial que queremos copiar en el nuevo avl
+ * @param B es el nodo p que utilizamos del arbol que queremos copiar 
+ **/
 template<typename T>
-void AVL<T>::copia(NodoAVL<T>* &q,NodoAVL<T> *p){
-    if (p){
-        q= new NodoAVL<T> (*p);
-        copia(q->izq,p->izq);
-        copia(q->der,p->der);
-    }else
-        q=0;
+void AVL<T>::copia(NodoAVL<T>* &q, NodoAVL<T> *p) {
+    if (p) {
+        q = new NodoAVL<T> (*p);
+        copia(q->izq, p->izq);
+        copia(q->der, p->der);
+    } else
+        q = 0;
 }
 
+/**
+ * @brief funcion del contructor por defecto del avl
+ **/
 template <typename T>
 AVL<T>::AVL() {
     raiz = 0;
 }
 
+/**
+ * @brief funcion del contructor copia del avl
+ * @param A es el arbol que tenemos que hacer la copia
+ **/
 template <typename T>
 AVL<T>::AVL(const AVL<T> & origen) {
-    copia(raiz,origen.raiz);
-    numEle=origen.numEle;
+    copia(raiz, origen.raiz);
+    numEle = origen.numEle;
 }
 
+/**
+ * @brief funcion para destruir el avl correctamente al finalizar el programa
+ **/
 template <typename T>
 AVL<T>::~AVL() {
     borrar(raiz);
@@ -86,15 +103,24 @@ AVL<T>::~AVL() {
     raiz = 0;
 }
 
+/**
+ * @brief funcion para poder utilizar el operador igual en el avl
+ * @param A es el arbol que tenemos que igualar para poder sacarlo
+ * @return devuelve el arbol del resultado del operador
+ **/
 template<typename T>
-AVL<T>& AVL<T>::operator=(const AVL<T>& orig){
-    if (this!=&orig){
+AVL<T>& AVL<T>::operator=(const AVL<T>& orig) {
+    if (this != &orig) {
         borrar(raiz);
-        copia(raiz,orig.raiz);
+        copia(raiz, orig.raiz);
     }
     return *this;
 }
 
+/**
+ * @brief funcion para hacer una rotacion a la izquierda en un nodo p del avl
+ * @param A es el nodo del avl del que vamos a partir para hacer la rotacion a izquierdas
+ **/
 template<typename T>
 void AVL<T>::rotIzqda(NodoAVL<T>* &p) {
     NodoAVL<T> *q = p, *r;
@@ -107,6 +133,10 @@ void AVL<T>::rotIzqda(NodoAVL<T>* &p) {
     if (q->bal > 0) r->bal += q->bal;
 }
 
+/**
+ * @brief funcion para hacer una rotacion a la derecha en un nodo p del avl
+ * @param A es el nodo del avl del que vamos a partir para hacer la rotacion a derechas
+ **/
 template<typename T>
 void AVL<T>::rotDecha(NodoAVL<T>* &p) {
     NodoAVL<T> *q = p, *l;
@@ -119,6 +149,12 @@ void AVL<T>::rotDecha(NodoAVL<T>* &p) {
     if (q->bal < 0) l->bal -= -q->bal;
 }
 
+/**
+ * @brief funcion para insertar un dato en el arbol
+ * @param A es el nodo del avl que vamos a utilizar para poder movernos en el avl
+ * @param B es el dato que queremos insertar en el avl
+ * @return devuelve el valor de la variable deltaH para poder verificar la insercion
+ **/
 template<typename T>
 int AVL<T>::inserta(NodoAVL<T>* &c, T &dato) {
     NodoAVL<T> *p = c;
@@ -152,6 +188,10 @@ int AVL<T>::inserta(NodoAVL<T>* &c, T &dato) {
     return deltaH;
 }
 
+/**
+ * @brief funcion para poder recorrer en Inorden el avl
+ * @param A es el nodo del avl que vamos a utilizar para recorrer el avl
+ **/
 template <typename T>
 void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
     if (p) {
@@ -162,16 +202,30 @@ void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
     }
 }
 
+/**
+ * @brief funcion para que muestre los numeros de elementos del avl
+ * @return devuelve el numero de elementos del arbol
+ **/
 template <typename T>
 unsigned int AVL<T>::numElementos() {
     return numEle;
 }
 
+/**
+ * @brief funcion para sacar la altura del avl
+ * @param A es el nodo del avl que vamos a utilizar para el calculo de la altura
+ * @return devuelve el valor de la altura del arbol 
+ **/
 template <typename T>
 unsigned int AVL<T>::altura() {
     return altura_aux(this->raiz);
 }
 
+/**
+ * @brief funcion auxiliar para poder calcular la altura del avl
+ * @param A es el nodo del avl que vamos a utilizar para el calculo de la altura
+ * @return devuelve el valor de la altura del arbol 
+ **/
 template<typename T>
 int AVL<T>::altura_aux(NodoAVL<T> *p) {
     if (p == 0)
@@ -181,6 +235,12 @@ int AVL<T>::altura_aux(NodoAVL<T> *p) {
 
 }
 
+/**
+ * @brief funcion para saber si un dato se encuentra en el avl
+ * @param A es el dato que deseemos buscar en el arbol
+ * @param B es un Nodo del avl 
+ * @return devuelve el nodo p si lo encuentra para utilizarlo en la funcion de busca  
+ **/
 template <typename T>
 NodoAVL<T> *AVL<T>::buscaClave(T &ele, NodoAVL<T> *p) {
     if (!p)
@@ -192,6 +252,12 @@ NodoAVL<T> *AVL<T>::buscaClave(T &ele, NodoAVL<T> *p) {
     else return p;
 }
 
+/**
+ * @brief funcion para saber si un dato se encuentra en el avl
+ * @param A es el dato que deseemos buscar en el arbol
+ * @param B es una variable auxiliar para poder utilizarla en dicho algoritmo
+ * @return TRUE O FALSE dependiendo si encuentra o no el dato en el avl    
+ **/
 template <typename T>
 bool AVL<T>::busca(T &ele, T &result) {
     NodoAVL<T> *p = buscaClave(ele, raiz);
@@ -202,6 +268,12 @@ bool AVL<T>::busca(T &ele, T &result) {
     return false;
 }
 
+/**
+ * @brief funcion para saber si un dato se encuentra en el avl
+ * @param A es el dato que deseemos buscar en el arbol
+ * @param B es una variable auxiliar para poder utilizarla en dicho algoritmo
+ * @return TRUE O FALSE dependiendo si encuentra o no el dato en el avl    
+ **/
 template<typename T>
 bool AVL<T>::buscaIt(T& dato, T& result) {
     NodoAVL<T> *aux = raiz;
@@ -220,13 +292,17 @@ bool AVL<T>::buscaIt(T& dato, T& result) {
     return false;
 }
 
+/**
+ * @brief funcion para complementar el destructor del arbol
+ * @param A Puntero a Nodo del avl para poder borrarlo por la izq y der
+ **/
 template<typename T>
 void AVL<T>::borrar(NodoAVL<T>* p) {
-    if (p){
-         borrar(p->izq);
-         borrar(p->der);
-         delete p;
-         p=0;
+    if (p) {
+        borrar(p->izq);
+        borrar(p->der);
+        delete p;
+        p = 0;
     }
 }
 

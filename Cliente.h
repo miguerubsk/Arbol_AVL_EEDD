@@ -6,17 +6,13 @@
 
 /* 
  * File:   Cliente.h
- * Author: Miguerubsk
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on 23 de septiembre de 2019, 22:30
  */
 
 #ifndef CLIENTE_H
 #define CLIENTE_H
-
-//#include "UTM.h"
-//#include "random.h"
-//#include "fecha.h"
 
 #include "Itinerario.h"
 #include "ListaDEnlazada.h"
@@ -33,106 +29,94 @@ using namespace std;
 class EcoCityMoto;
 
 class Cliente {
-    
-    private:
-        string dni;
-        string pass;
-        string nombre;
-        string direccion;
-        ListaDEnlazada<Itinerario> rutas;
-        EcoCityMoto *acceso;
-        UTM posicion;
+private:
+    string dni;
+    string pass;
+    string nombre;
+    string direccion;
+    ListaDEnlazada<Itinerario> rutas;
+    EcoCityMoto *acceso;
+    UTM posicion;
 
-    
-    public:
-        //Constructor
 
-        Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas() {
-        }
+public:
+    //Constructor
 
-        Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud, EcoCityMoto *_acceso=0) :
-        dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso) {
-        }
+    Cliente() : dni("0"), pass("0"), nombre("0"), direccion("0"), posicion(0.0, 0.0), rutas() {
+    }
 
-        string GetDNI() const {
-            return dni;
-        }
+    Cliente(string _dni, string _pass, string _nombre, string _direccion, double _latitud, double _longitud, EcoCityMoto *_acceso = 0) :
+    dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso) {
+    }
 
-        string GetNOMBRE() const {
-            return nombre;
-        }
-        
-        string GetDIRECCION() const {
-            return direccion;
-        }
+    string GetDNI() const {
+        return dni;
+    }
 
-        UTM GetUTM() const {
-            return posicion;
-        }
+    string GetNOMBRE() const {
+        return nombre;
+    }
 
-        bool operator==(const Cliente& orig) {
-            std::size_t found = this->dni.find(orig.dni);
+    string GetDIRECCION() const {
+        return direccion;
+    }
 
-            if (found != std::string::npos)
-                return true;
+    UTM GetUTM() const {
+        return posicion;
+    }
 
-            return false;
-        }
+    bool operator==(const Cliente& orig) {
+        std::size_t found = this->dni.find(orig.dni);
 
-        bool operator<(Cliente& right) const {
-            return (dni < right.dni);
-        }
+        if (found != std::string::npos)
+            return true;
 
-        bool operator>(Cliente& right) const {
-            return (dni > right.dni);
-        }
+        return false;
+    }
 
-        void SetDireccion(string direccion) {
-            this->direccion = direccion;
-        }
+    bool operator<(Cliente& right) const {
+        return (dni < right.dni);
+    }
 
-        void SetDni(string dni) {
-            this->dni = dni;
-        }
+    bool operator>(Cliente& right) const {
+        return (dni > right.dni);
+    }
 
-        void SetNombre(string nombre) {
-            this->nombre = nombre;
-        }
+    void SetDireccion(string direccion) {
+        this->direccion = direccion;
+    }
 
-        void SetPass(string pass) {
-            this->pass = pass;
-        }
+    void SetDni(string dni) {
+        this->dni = dni;
+    }
 
-        void SetPosicion(UTM posicion) {
-            this->posicion = posicion;
-        }
+    void SetNombre(string nombre) {
+        this->nombre = nombre;
+    }
 
-        Cliente& operator=(const Cliente &orig) {
-            dni = orig.dni;
-            nombre = orig.nombre;
-            direccion = orig.direccion;
-            pass = orig.pass;
-            posicion = orig.posicion;
-            return *this;
-        }
+    void SetPass(string pass) {
+        this->pass = pass;
+    }
 
-        double distancia(const Cliente &cli) {
-            return sqrt(pow((cli.posicion.GetLatitud()-this->posicion.GetLatitud()),2)+pow((cli.posicion.GetLongitud()-this->posicion.GetLongitud()),2));
-        }
+    void SetPosicion(UTM posicion) {
+        this->posicion = posicion;
+    }
 
-        void crearItinerarios(int num, int IdUltimo, const UTM &min, const UTM &max){
-//            Set_random(rand());
-//            for (int i=0; i<num; i++){
-//                Fecha f(rand()%28+1,rand()%12+1,rand()%10+2019);
-//                UTM inicio( Randfloat(min.GetLatitud(),max.GetLatitud()),
-//                            Randfloat(min.GetLongitud(),max.GetLongitud()));
-//                UTM fin( Randfloat(min.GetLatitud(),max.GetLatitud()),
-//                            Randfloat(min.GetLongitud(),max.GetLongitud()));
-//                int minutos = rand()%100;
-//                Itinerario viaje(++IdUltimo,inicio,fin,f,minutos);
-//                itinerarios.insertarFinal(viaje);
-//            }
-                    double lat;
+    Cliente& operator=(const Cliente &orig) {
+        dni = orig.dni;
+        nombre = orig.nombre;
+        direccion = orig.direccion;
+        pass = orig.pass;
+        posicion = orig.posicion;
+        return *this;
+    }
+
+    double distancia(const Cliente &cli) {
+        return sqrt(pow((cli.posicion.GetLatitud() - this->posicion.GetLatitud()), 2) + pow((cli.posicion.GetLongitud() - this->posicion.GetLongitud()), 2));
+    }
+
+    void crearItinerarios(int num, int IdUltimo, const UTM &min, const UTM &max) {
+        double lat;
         double longi;
         for (int i = 0; i < num; i++) {
             //GENERAR COORDENADAS RANDOM
@@ -156,18 +140,11 @@ class Cliente {
             Itinerario itinerarioAux(++IdUltimo, inicio, fin, fechaRandom, minutosRandom);
             rutas.insertarFinal(itinerarioAux);
         }
-        }
-         void desbloquearMoto(Moto *m);
-         void terminarTrayecto();
-         Moto * buscarMotoCercana();
-        
-        //CORREGIR
-
-        friend ostream& operator<<(ostream & os, const Cliente & obj);
-//        {
-//	return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " Id del ultimo " << obj.acceso->getIdUltimo()<< " | " << "\n";
-//        }
-
+    }
+    void desbloquearMoto(Moto *m);
+    void terminarTrayecto();
+    Moto * buscarMotoCercana();
+    friend ostream& operator<<(ostream & os, const Cliente & obj);
 
 };
 

@@ -6,7 +6,7 @@
 
 /* 
  * File:   Itinerario.h
- * Author: Miguerubsk
+ * Author: Fernando Jiménez Quesada y Miguel González García
  *
  * Created on 5 de octubre de 2019, 11:33
  */
