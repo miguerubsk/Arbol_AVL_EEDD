@@ -19,6 +19,8 @@
 #include "AVL.h"
 #include <fstream>
 #include <sstream>
+#include <string>
+#include <iostream>
 #include "Cliente.h"
 
 class Moto;
@@ -34,6 +36,9 @@ public:
     void desbloqueaMoto(Moto *moto, Cliente *cli);
     unsigned int getIdUltimo() const {
         return idUltimo;
+    }
+    AVL<Cliente>& getCliente() {
+        return clientes;
     }
 
 

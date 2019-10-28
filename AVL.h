@@ -76,6 +76,7 @@ AVL<T>::AVL() {
 template <typename T>
 AVL<T>::AVL(const AVL<T> & origen) {
     copia(raiz,origen.raiz);
+    numEle=origen.numEle;
 }
 
 template <typename T>

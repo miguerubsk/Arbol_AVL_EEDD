@@ -226,22 +226,39 @@ int main(int argc, char** argv) {
 //    it1.siguiente();
 //    }
 ////PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
+    try{
+    EcoCityMoto prueba;
+//    AVL<int> avl;
+//    int a=0;
+//    int result;
+//    for(int i=0; i<30; i++){
+//        avl.inserta(i);
+//    }
+//    cout<<"La altura del arbol es: "<<avl.altura()<<endl;
+//    cout<<"Nº elementos del arbol es: "<<avl.numElementos()<<endl;
+//    cout<<"Introduzca el numero que desee buscar en el arbol: "<<endl;
+//    cin>>a;
+//    if(avl.busca(a,result)){
+//        cout<<"El numero "<<a<<" esta en el avl"<<endl;
+//    }else{
+//        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
+//    }
+//    avl.recorreInorden();
     
-    AVL<int> avl;
-    int a=0;
-    int result;
-    for(int i=0; i<30; i++){
-        avl.inserta(i);
+        std::cout << prueba.getCliente().altura() << std::endl;
+        std::cout << prueba.getCliente().numElementos() << std::endl;
+        Cliente buscar, resultado;
+        buscar.SetDni("24242105C");
+
+        std::cout << "Buscar cliente con DNI: " << buscar.GetDNI() << std::endl;
+        if (prueba.getCliente().busca(buscar, resultado)) {
+            std::cout << "Cliente encontrado: " << std::endl;
+            std::cout << resultado.GetDNI() << std::endl;
+            std::cout << resultado.GetNOMBRE() << std::endl;
+        }
+    
+    } catch (std::string &e){
+        cout<<e<<endl;
     }
-    cout<<"La altura del arbol es: "<<avl.altura()<<endl;
-    cout<<"Nº elementos del arbol es: "<<avl.numElementos()<<endl;
-    cout<<"Introduzca el numero que desee buscar en el arbol: "<<endl;
-    cin>>a;
-    if(avl.busca(a,result)){
-        cout<<"El numero "<<a<<" esta en el avl"<<endl;
-    }else{
-        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
-    }
-    avl.recorreInorden();
     return 0;
 }

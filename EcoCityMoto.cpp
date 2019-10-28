@@ -13,7 +13,9 @@
 
 #include "EcoCityMoto.h"
 
-EcoCityMoto::EcoCityMoto() {
+EcoCityMoto::EcoCityMoto(): idUltimo(0), clientes(), motos() {
+    cargarClientes("clientes_v2.csv");
+    cargarMotos("motos.txt");
 }
 
 EcoCityMoto::EcoCityMoto(const EcoCityMoto& orig) {
@@ -45,12 +47,12 @@ void EcoCityMoto::desbloqueaMoto(Moto *moto, Cliente *cli){
 }
 
 void EcoCityMoto::cargarClientes(std::string filename){
-    std::ifstream fe; //Flujo de entrada
-    std::string linea; //Cada linea tiene un clienete
+    ifstream fe; //Flujo de entrada
+    string linea; //Cada linea tiene un clienete
     int total = 0; //Contador de lineas o clientes
 
     //Variables auxiliares para almacenar los valores leidos
-    std::string dni, nombre, pass, direccion, latitud, longitud;
+    string dni, nombre, pass, direccion, latitud, longitud;
     double dlat, dlon;
 
 
@@ -62,13 +64,13 @@ void EcoCityMoto::cargarClientes(std::string filename){
         //Mientras no se haya llegado al final del fichero
         while (!fe.eof()) {
             getline(fe, linea); //Toma una linea del fichero
-            std::stringstream ss; //Stream que trabaja sobre buffer interno         
+            stringstream ss; //Stream que trabaja sobre buffer interno         
 
             if (linea != "") {
                 ++total;
             }
 
-            if (total >= 1) {
+            if (total > 1) {
                 //Inicializamos el contenido de ss
                 ss << linea;
 
@@ -92,18 +94,19 @@ void EcoCityMoto::cargarClientes(std::string filename){
                 dlon = stod(longitud);
 
                 //con todos los atributos leidos, se crea el cliente
+                //                cout<<dni<<endl;
                 Cliente client(dni, pass, nombre, direccion, dlat, dlon, this);
                 clientes.inserta(client);
                 if (total % 100 == 0) {
-                    std::cout << "Leido cliente " << total << "\n  ";
+                    cout << "Leido cliente " << total << "\n  ";
                 }
             }
         }
 
-        std::cout << "Total de clientes en el fichero: " << total - 1 << std::endl;
+        cout << "Total de clientes en el fichero: " << total << endl;
         fe.close(); //Cerramos el flujo de entrada
     } else {
-        std::cerr << "No se puede abrir el fichero" << std::endl;
+        cerr << "No se puede abrir el fichero" << endl;
     }
 }
 
@@ -118,9 +121,12 @@ void EcoCityMoto::cargarMotos(std::string filename){
     fe.open(filename);
 
     if (fe.good()) {
+        getline(fe, linea); //Toma una linea del fichero
+        getline(fe, linea); //Toma una linea del fichero
         //Mientras no se haya llegado al final del fichero
         while (!fe.eof()) {
-            getline(fe, linea); //Toma una linea del fichero
+            
+            
             std::stringstream ss; //Stream que trabaja sobre buffer interno         
 
             if (linea != "") {
@@ -149,12 +155,13 @@ void EcoCityMoto::cargarMotos(std::string filename){
                 Moto moto(mat, dlat, dlon, aux);
                 motos.insertar(moto);
                 if (total % 100 == 0) {
-                    std::cout << "Leido cliente " << total << "\n  ";
+                    std::cout << "Leida moto " << total << "\n  ";
                 }
             }
+            getline(fe, linea); //Toma una linea del fichero
         }
 
-        std::cout << "Total de clientes en el fichero: " << total - 1 << std::endl;
+        std::cout << "Total de motos en el fichero: " << total << std::endl;
         fe.close(); //Cerramos el flujo de entrada
     } else {
         std::cerr << "No se puede abrir el fichero" << std::endl;
