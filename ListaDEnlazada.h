@@ -118,6 +118,11 @@ public:
     T& getDato() {
         return nodo->getDato();
     }
+
+    T *getdatoaux() {
+        return &nodo->getDato();
+    }
+    
     //Creamos el metodo para obtener el nodo.
 
     Nodo<T>* getNodo() {
@@ -200,7 +205,7 @@ public:
     }
     ListaDEnlazada(const ListaDEnlazada &orig);
     //Creamos el operador = de la clase.
-    ListaDEnlazada<T> &operator=(ListaDEnlazada &lista);
+    ListaDEnlazada<T> &operator=(const ListaDEnlazada &lista);
     //Creamos los metodos para obtener los iteradores de Inicio y Final.
 
     Iterador<T> iteradorInicio() {
@@ -234,11 +239,19 @@ public:
 };
 
 template <class T>
-ListaDEnlazada<T>& ListaDEnlazada<T>::operator=(ListaDEnlazada& lista) {
-    cabecera = lista.cabecera;
-    cola = lista.cola;
-    numeroelementos = lista.numeroelementos;
-    return lista;
+ListaDEnlazada<T>& ListaDEnlazada<T>::operator=(const ListaDEnlazada& lista) {
+        while (this->cabecera != 0) {
+            this->borrarFinal();
+        }
+        
+        Nodo<T> *aux = lista.cabecera;
+
+        while (aux != 0) {
+            this->insertarFinal(aux->getDato());
+            aux = aux->getSiguiente();
+        }
+        
+        return *this;
 }
 
 template <class T>

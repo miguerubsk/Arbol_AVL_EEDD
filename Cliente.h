@@ -49,6 +49,10 @@ public:
     dni(_dni), pass(_pass), nombre(_nombre), direccion(_direccion), posicion(_latitud, _longitud), acceso(_acceso) {
     }
 
+    Cliente(const Cliente& orig) : dni(orig.dni), pass(orig.pass), nombre(orig.nombre), direccion(orig.direccion),
+posicion(orig.posicion), rutas(orig.rutas), acceso(orig.acceso) {
+}
+    
     string GetDNI() const {
         return dni;
     }
@@ -108,6 +112,8 @@ public:
         direccion = orig.direccion;
         pass = orig.pass;
         posicion = orig.posicion;
+        rutas = orig.rutas;
+        acceso = orig.acceso;
         return *this;
     }
 
@@ -144,8 +150,9 @@ public:
     void desbloquearMoto(Moto *m);
     void terminarTrayecto();
     Moto * buscarMotoCercana();
+    ListaDEnlazada<Itinerario>& getItinerario();
     friend ostream& operator<<(ostream & os, const Cliente & obj);
-
+    
 };
 
 #endif /* CLIENTE_H */

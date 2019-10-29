@@ -18,12 +18,21 @@
 **/
 void Cliente::desbloquearMoto(Moto *m) {
     acceso->desbloqueaMoto(m, this);
+    Fecha fecha;
+    UTM final;
+    Itinerario itinerario(acceso->getIdUltimo(), m->getPosicion(), final, fecha, 0, m);
+    rutas.insertarFinal(itinerario);
 }
 
 
 void Cliente::terminarTrayecto() {
-    //ListaDEnlazada<Itinerario>::Iterador i=rutas.iteradorFinal();
-
+    auto iterador = rutas.iteradorFinal();
+    Fecha fechafin;
+    srand(time(NULL));
+    iterador.getDato().SetMinutos((fechafin.verHora()*60 + fechafin.verMin()) - (iterador.getDato().GetFecha().verHora()*60 + iterador.getDato().GetFecha().verMin()));
+    iterador.getDato().SetFin(posicion);
+    iterador.getDato().GetVehiculos()->setPosicion(posicion);
+    iterador.getDato().GetVehiculos()->seDesactiva();
 }
 /**
      * @brief funcion para buscar la moto mas cercana al cliente en cuestion
@@ -32,6 +41,10 @@ void Cliente::terminarTrayecto() {
 Moto * Cliente::buscarMotoCercana() {
     Moto* m = acceso->LocalizaMotoCercana(posicion);
     return m;
+}
+
+ListaDEnlazada<Itinerario>& Cliente::getItinerario() {
+    return rutas;
 }
 //OPERADOR << PARA CLIENTE
 ostream& operator<<(ostream & os, const Cliente & obj) {

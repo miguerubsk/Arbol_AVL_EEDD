@@ -17,11 +17,12 @@
 #include "fecha.h"
 #include <cstdlib>
 #include "UTM.h"
+#include "Moto.h"
 
 
 class Itinerario {
 public:
-    Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos);
+    Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos, Moto *moto=0);
     Itinerario(const Itinerario& orig);
     virtual ~Itinerario();
     Fecha GetFecha() const {
@@ -63,13 +64,15 @@ public:
     void SetMinutos(int minutos) {
         this->minutos = minutos;
     }
-
-
+    void SetVehiculos(Moto* vehiculos);
+    Moto* GetVehiculos();
+        
 private:
     
     int id, minutos;
     UTM inicio, fin;
     Fecha fecha;
+    Moto *vehiculos;
 
 };
 

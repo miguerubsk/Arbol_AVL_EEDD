@@ -77,6 +77,7 @@ void EcoCityMoto::cargarClientes(std::string filename){
     fe.open(filename);
 
     if (fe.good()) {
+        getline(fe, linea);
         //Mientras no se haya llegado al final del fichero
         while (!fe.eof()) {
             getline(fe, linea); //Toma una linea del fichero

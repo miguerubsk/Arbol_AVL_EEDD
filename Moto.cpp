@@ -15,7 +15,31 @@
 /**
  * @brief constructor por defecto de moto
  **/
-Moto::Moto() {
+Moto::Moto(): id(""), posicion(0, 0), estado(BLOQUEADA), usadoPor(0) {
+}
+
+void Moto::setEstado(Status estado) {
+    this->estado = estado;
+}
+
+Status Moto::getEstado() const {
+    return estado;
+}
+
+void Moto::setUsadoPor(Cliente* usadoPor) {
+    this->usadoPor = usadoPor;
+}
+
+Cliente* Moto::getUsadoPor() const {
+    return usadoPor;
+}
+
+void Moto::setPosicion(UTM posicion) {
+    this->posicion = posicion;
+}
+
+void Moto::setId(std::string id) {
+    this->id = id;
 }
 /**
  * @brief constructor copia de moto
@@ -32,7 +56,7 @@ Moto::~Moto() {
  * @brief funcion get de la posicion
  * @return devuelve la posicion de la moto
  **/
-UTM Moto::getPosicion() const {
+UTM& Moto::getPosicion(){
     return posicion;
 }
 /**
@@ -46,7 +70,7 @@ std::string Moto::getId() const {
  * @brief funcion get del estado
  * @return devuelve el estado de la moto
  **/
-Status Moto::getStatus() const {
+Status& Moto::getStatus() {
     return estado;
 }
 /**

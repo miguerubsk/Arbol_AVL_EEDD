@@ -10,7 +10,6 @@
  *
  * Created on 19 de septiembre de 2019, 13:07
  */
-
 #include <cstdlib>
 #include <vector>
 #include <list>
@@ -206,60 +205,45 @@ int main(int argc, char** argv) {
 //     }catch (std::bad_alloc &e){
 //            std::cerr << "No hay memoria suficiente para el objeto dinamico" << std::endl;     
 //     }
-//       
-//     //PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
-//    ListaDEnlazada<int> e1;
-//    for(int i=0; i<20;i++){
-//        e1.insertarInicio(i);
-//    }
-//    Iterador<int> it=e1.iteradorInicio();
-//    for(int i=0; i<e1.getNumeroelementos();i++){    
-//    cout<<"Dato nº "<<i<<" : "<<it.getDato()<<endl;
-//    it.siguiente();
-//    }
-//    cout<<"---------------CONSTRUCTOR COPIA----------"<<endl;
-//    ListaDEnlazada<int> e2(e1);
-//    Iterador<int> it1=e2.iteradorInicio();
-//    for(int i=0; i<e2.getNumeroelementos();i++){    
-//    cout<<"Dato nº "<<i<<" : "<<it1.getDato()<<endl;
-//    it1.siguiente();
-//    }
-////PROBAR CONTRUCTOR COPIA LISTA ENLAZDA//
     try{
     EcoCityMoto prueba;
-//    AVL<int> avl;
-//    int a=0;
-//    int result;
-//    for(int i=0; i<30; i++){
-//        avl.inserta(i);
-//    }
-//    cout<<"La altura del arbol es: "<<avl.altura()<<endl;
-//    cout<<"Nº elementos del arbol es: "<<avl.numElementos()<<endl;
-//    cout<<"Introduzca el numero que desee buscar en el arbol: "<<endl;
-//    cin>>a;
-//    if(avl.busca(a,result)){
-//        cout<<"El numero "<<a<<" esta en el avl"<<endl;
-//    }else{
-//        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
-//    }
-//    avl.recorreInorden();
-        prueba.getCliente().recorreInorden();
+        //prueba.getCliente().recorreInorden();
         std::cout << "La altura del avl de los clientes es: " << prueba.getCliente().altura() << std::endl;
         std::cout <<  "El numero de clientes del avl es: " << prueba.getCliente().numElementos() << std::endl;
         Cliente buscar, resultado;
         buscar.SetDni("24242105C");
-
-        std::cout << "Buscar cliente con DNI: " << buscar.GetDNI() << std::endl;
-        if (prueba.getCliente().busca(buscar, resultado)) {
-            std::cout << "Cliente encontrado: " << std::endl;
-            std::cout << "DNI: " << resultado.GetDNI() << std::endl;
-            std::cout << "Nombre: " << resultado.GetNOMBRE() << std::endl;
-        }
+        
         resultado=prueba.buscarCliente("67839521O");
             std::cout << "Cliente encontrado: " << std::endl;
             std::cout << "DNI: " << resultado.GetDNI() << std::endl;
             std::cout << "Nombre: " << resultado.GetNOMBRE() << std::endl;
-    
+
+        resultado.desbloquearMoto(resultado.buscarMotoCercana());
+        std::cout << "Se desbloquea la moto " <<  resultado.getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << std::endl;
+
+        UTM max(37, 3), min(38, 4);
+
+        std::mt19937 rnd(std::time(NULL));
+        std::uniform_real_distribution<> latitud(min.GetLatitud(), max.GetLatitud());
+        std::uniform_real_distribution<> longitud(min.GetLongitud(), max.GetLongitud());
+        UTM fin(latitud(rnd), longitud(rnd));
+
+        resultado.SetPosicion(fin);
+
+        resultado.terminarTrayecto();
+
+        std::cout << "TERMINADO ITINERARIO" << std::endl;
+        std::cout << "Id:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetId() << std::endl;
+        std::cout << "UTM inicio:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetInicio().GetLatitud() << "," << resultado.getItinerario().iteradorFinal().getDato().GetInicio().GetLongitud()<< std::endl;
+        std::cout << "UTM fin:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetFin().GetLatitud() << "," << resultado.getItinerario().iteradorFinal().getDato().GetFin().GetLongitud() << std::endl;
+        std::cout << "Fecha:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetFecha() << std::endl;
+        std::cout << "Duracion:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetMinutos() << std::endl;
+        std::cout << "Moto:" << resultado.getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << std::endl;
+
+   
+
+            
+            
     } catch (std::string &e){
         cout<<e<<endl;
     }

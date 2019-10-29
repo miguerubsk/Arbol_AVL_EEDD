@@ -12,15 +12,24 @@
  */
 
 #include "Itinerario.h"
+#include "Moto.h"
 
-Itinerario::Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos):
-                id(_id), inicio(_inicio), fin(_fin), fecha(_fecha), minutos(_minutos)
+Itinerario::Itinerario(int _id, UTM &_inicio, UTM &_fin, Fecha &_fecha, int _minutos, Moto *_moto):
+                id(_id), inicio(_inicio), fin(_fin), fecha(_fecha), minutos(_minutos), vehiculos(_moto)
 {
+}
+
+void Itinerario::SetVehiculos(Moto* vehiculos) {
+    this->vehiculos = vehiculos;
+}
+
+Moto* Itinerario::GetVehiculos() {
+    return vehiculos;
 }
 
 Itinerario::Itinerario(const Itinerario& orig):
              id(orig.id), inicio(orig.inicio), 
-             fin(orig.fin), fecha(orig.fecha), minutos(orig.minutos)
+             fin(orig.fin), fecha(orig.fecha), minutos(orig.minutos), vehiculos(orig.vehiculos)
 {
 }
 

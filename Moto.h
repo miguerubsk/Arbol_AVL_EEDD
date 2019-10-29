@@ -34,9 +34,9 @@ public:
             case 3: estado = ROTA;
         }
     }
-    UTM getPosicion() const;
+    UTM &getPosicion();
     std::string getId() const;
-    Status getStatus() const;
+    Status &getStatus();
     Moto(const Moto& orig);
     virtual ~Moto();
     Moto& operator=(const Moto &orig);
@@ -44,6 +44,16 @@ public:
     bool operator==(const Moto &orig);
     bool seActiva(Cliente *cli);
     void seDesactiva();
+    std::string GetId() const {
+        return id;
+    }
+    void setEstado(Status estado);
+    Status getEstado() const;
+    void setUsadoPor(Cliente* usadoPor);
+    Cliente* getUsadoPor() const;
+    void setPosicion(UTM posicion);
+    void setId(std::string id);
+
 private:
     std::string id;
     UTM posicion;
