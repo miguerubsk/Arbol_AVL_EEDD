@@ -243,18 +243,22 @@ int main(int argc, char** argv) {
 //        cout<<"El numero "<<a<<" no esta en el avl"<<endl;
 //    }
 //    avl.recorreInorden();
-    
-        std::cout << prueba.getCliente().altura() << std::endl;
-        std::cout << prueba.getCliente().numElementos() << std::endl;
+        prueba.getCliente().recorreInorden();
+        std::cout << "La altura del avl de los clientes es: " << prueba.getCliente().altura() << std::endl;
+        std::cout <<  "El numero de clientes del avl es: " << prueba.getCliente().numElementos() << std::endl;
         Cliente buscar, resultado;
         buscar.SetDni("24242105C");
 
         std::cout << "Buscar cliente con DNI: " << buscar.GetDNI() << std::endl;
         if (prueba.getCliente().busca(buscar, resultado)) {
             std::cout << "Cliente encontrado: " << std::endl;
-            std::cout << resultado.GetDNI() << std::endl;
-            std::cout << resultado.GetNOMBRE() << std::endl;
+            std::cout << "DNI: " << resultado.GetDNI() << std::endl;
+            std::cout << "Nombre: " << resultado.GetNOMBRE() << std::endl;
         }
+        resultado=prueba.buscarCliente("67839521O");
+            std::cout << "Cliente encontrado: " << std::endl;
+            std::cout << "DNI: " << resultado.GetDNI() << std::endl;
+            std::cout << "Nombre: " << resultado.GetNOMBRE() << std::endl;
     
     } catch (std::string &e){
         cout<<e<<endl;

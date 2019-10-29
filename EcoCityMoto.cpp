@@ -186,3 +186,11 @@ void EcoCityMoto::cargarMotos(std::string filename){
         std::cerr << "No se puede abrir el fichero" << std::endl;
     }
 }
+
+Cliente EcoCityMoto::buscarCliente(std::string dni) {
+    Cliente c, aux;
+    c.SetDni(dni);
+    if(clientes.busca(c,aux)){
+        return aux;
+    }
+}

@@ -40,6 +40,7 @@ public:
     AVL<Cliente>& getCliente() {
         return clientes;
     }
+    Cliente buscarCliente(std::string dni); 
 
 
 
