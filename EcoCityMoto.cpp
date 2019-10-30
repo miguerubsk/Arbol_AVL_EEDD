@@ -194,4 +194,5 @@ Cliente EcoCityMoto::buscarCliente(std::string dni) {
     if(clientes.busca(c,aux)){
         return aux;
     }
+    throw std::invalid_argument("No se ha encontrado al cliente");
 }

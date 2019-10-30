@@ -35,7 +35,7 @@ private:
     int inserta(NodoAVL <T>* &c, T &dato);
     void recorreInorden(NodoAVL <T> *p, int nivel);
     NodoAVL <T>* buscaClave(T &ele, NodoAVL<T> *p);
-    int altura_aux(NodoAVL<T> *p);
+    int altura_aux(NodoAVL<T> *p, int nivel, int &result);
     void rotIzqda(NodoAVL <T>* &p);
     void rotDecha(NodoAVL <T>* &p);
     void borrar(NodoAVL<T>* p);
@@ -196,8 +196,8 @@ template <typename T>
 void AVL<T>::recorreInorden(NodoAVL<T> *p, int nivel) {
     if (p) {
         recorreInorden(p->izq, nivel + 1);
-        std::cout << "Procesando nodo " << p->dato;
-        std::cout << " en el nivel " << nivel << std::endl;
+        std::cout <<  p->dato;
+        std::cout << " En el nivel " << nivel << std::endl;
         recorreInorden(p->der, nivel + 1);
     }
 }
@@ -218,7 +218,9 @@ unsigned int AVL<T>::numElementos() {
  **/
 template <typename T>
 unsigned int AVL<T>::altura() {
-    return altura_aux(this->raiz);
+    int result=0;
+    altura_aux(this->raiz, 0 ,result);
+    return result;
 }
 
 /**
@@ -227,12 +229,13 @@ unsigned int AVL<T>::altura() {
  * @return devuelve el valor de la altura del arbol 
  **/
 template<typename T>
-int AVL<T>::altura_aux(NodoAVL<T> *p) {
-    if (p == 0)
-        return 0;
-
-    return 1 + std::max(altura_aux(p->der), altura_aux(p->izq));
-
+int AVL<T>::altura_aux(NodoAVL<T> *p, int nivel, int &result) {
+        if (p){
+        altura(p->izq,nivel+1,result);
+        if (nivel>result)
+            result=nivel;
+        altura(p->der,nivel+1,result);
+    }
 }
 
 /**

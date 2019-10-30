@@ -42,11 +42,20 @@ Moto * Cliente::buscarMotoCercana() {
     Moto* m = acceso->LocalizaMotoCercana(posicion);
     return m;
 }
-
+/**
+     * @brief funcion para devolver la lista de itinerarios
+     * @return devuelve la lista doblemente enlazada de los itinerarios del cliente
+**/
 ListaDEnlazada<Itinerario>& Cliente::getItinerario() {
     return rutas;
 }
 //OPERADOR << PARA CLIENTE
+/**
+     * @brief funcion para el operador << de la clase Cliente
+     * @param A ostream &os
+     * @param B const Cliente & obj  
+     * @return devuelve el contenido de las variables de cliente
+**/
 ostream& operator<<(ostream & os, const Cliente & obj) {
     return os << "DNI: " << obj.GetDNI() << " | " << "Nombre: " << obj.GetNOMBRE() << " | " << "Direccion: " << obj.GetDIRECCION() << " Id del ultimo " << obj.acceso->getIdUltimo() << " | " << "\n";
 }
