@@ -40,7 +40,11 @@ public:
     AVL<Cliente>& getCliente() {
         return clientes;
     }
-    Cliente buscarCliente(std::string dni); 
+    void setIdUltimo(unsigned int idUltimo) {
+        this->idUltimo = idUltimo;
+    }
+
+    Cliente* buscarCliente(std::string dni); 
 
 
 

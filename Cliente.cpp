@@ -20,6 +20,7 @@ void Cliente::desbloquearMoto(Moto *m) {
     acceso->desbloqueaMoto(m, this);
     Fecha fecha;
     UTM final;
+    acceso->setIdUltimo(acceso->getIdUltimo()+1);
     Itinerario itinerario(acceso->getIdUltimo(), m->getPosicion(), final, fecha, 0, m);
     rutas.insertarFinal(itinerario);
 }

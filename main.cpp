@@ -68,16 +68,16 @@ int main(int argc, char** argv) {
         cout << "La altura del avl de los clientes es: " << prueba.getCliente().altura() << endl;
         //NUMERO DE CLIENTES DEL AVL
         cout << "El numero de clientes del avl es: " << prueba.getCliente().numElementos() << endl;
-        Cliente cliente1, buscado;
+        Cliente cliente1, *buscado;
         cliente1.SetDni("24242105C");
         //BUSCAR CLIENTE CON DNI 67839521O
         buscado = prueba.buscarCliente("67839521O");
         cout << "Cliente encontrado: " << endl;
-        cout << "DNI: " << buscado.GetDNI() << endl;
-        cout << "Nombre: " << buscado.GetNOMBRE() << endl;
+        cout << "DNI: " << buscado->GetDNI() << endl;
+        cout << "Nombre: " << buscado->GetNOMBRE() << endl;
         //DESBLOQUEAR MOTO
-        buscado.desbloquearMoto(buscado.buscarMotoCercana());
-        cout << "Se desbloquea la moto " << buscado.getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << endl;
+        buscado->desbloquearMoto(buscado->buscarMotoCercana());
+        cout << "Se desbloquea la moto " << buscado->getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << endl;
 
         UTM max(37, 3), min(38, 4);
         mt19937 rnd(time(NULL));
@@ -85,16 +85,16 @@ int main(int argc, char** argv) {
         uniform_real_distribution<> longitud(min.GetLongitud(), max.GetLongitud());
         UTM fin(latitud(rnd), longitud(rnd));
 
-        buscado.SetPosicion(fin);
+        buscado->SetPosicion(fin);
         //TERMINAR EL TRAYECTO
-        buscado.terminarTrayecto();
+        buscado->terminarTrayecto();
         cout << "TERMINADO ITINERARIO" << endl;
-        cout << "Id:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetId() << endl;
-        cout << "UTM inicio:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetInicio().GetLatitud() << "<-->" << buscado.getItinerario().iteradorFinal().getDato().GetInicio().GetLongitud() << endl;
-        cout << "UTM fin:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetFin().GetLatitud() << "<-->" << buscado.getItinerario().iteradorFinal().getDato().GetFin().GetLongitud() << endl;
-        cout << "Fecha:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetFecha() << endl;
-        cout << "Duracion:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetMinutos() << endl;
-        cout << "Id de la moto:" << buscado.getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << endl;
+        cout << "Id:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetId() << endl;
+        cout << "UTM inicio:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetInicio().GetLatitud() << "<-->" << buscado->getItinerario().iteradorFinal().getDato().GetInicio().GetLongitud() << endl;
+        cout << "UTM fin:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetFin().GetLatitud() << "<-->" << buscado->getItinerario().iteradorFinal().getDato().GetFin().GetLongitud() << endl;
+        cout << "Fecha:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetFecha() << endl;
+        cout << "Duracion:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetMinutos() << endl;
+        cout << "Id de la moto:" << buscado->getItinerario().iteradorFinal().getdatoaux()->GetVehiculos()->GetId() << endl;
     } catch (std::string &e) {
         cout << e << endl;
     } catch (std::invalid_argument &e) {

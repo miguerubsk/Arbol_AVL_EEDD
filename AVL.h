@@ -16,6 +16,8 @@
 
 #include <iostream>
 
+#include "ListaDEnlazada.h"
+
 template <typename U>
 class NodoAVL {
 public:
@@ -45,7 +47,7 @@ public:
     AVL<T>(const AVL<T> & origen);
     virtual ~AVL();
     AVL<T>& operator=(const AVL<T>& orig);
-    bool busca(T& dato, T& result);
+    bool busca(T& dato, T* &result);
     bool buscaIt(T& dato, T& result);
 
     void recorreInorden() {
@@ -262,10 +264,10 @@ NodoAVL<T> *AVL<T>::buscaClave(T &ele, NodoAVL<T> *p) {
  * @return TRUE O FALSE dependiendo si encuentra o no el dato en el avl    
  **/
 template <typename T>
-bool AVL<T>::busca(T &ele, T &result) {
+bool AVL<T>::busca(T &ele, T* &result) {
     NodoAVL<T> *p = buscaClave(ele, raiz);
     if (p) {
-        result = p->dato;
+        result = &(p->dato);
         return true;
     }
     return false;
@@ -279,7 +281,7 @@ bool AVL<T>::busca(T &ele, T &result) {
  **/
 template<typename T>
 bool AVL<T>::buscaIt(T& dato, T& result) {
-    NodoAVL<T> *aux = raiz;
+    NodoAVL<T> *aux = raiz; 
     while (aux != 0) {
         if (dato < aux->dato) {
             aux = aux->izq;

@@ -188,8 +188,8 @@ void EcoCityMoto::cargarMotos(std::string filename){
     }
 }
 
-Cliente EcoCityMoto::buscarCliente(std::string dni) {
-    Cliente c, aux;
+Cliente* EcoCityMoto::buscarCliente(std::string dni) {
+    Cliente c, *aux;
     c.SetDni(dni);
     if(clientes.busca(c,aux)){
         return aux;
