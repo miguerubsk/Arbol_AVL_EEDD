@@ -48,7 +48,7 @@ public:
     virtual ~AVL();
     AVL<T>& operator=(const AVL<T>& orig);
     bool busca(T& dato, T* &result);
-    bool buscaIt(T& dato, T& result);
+    bool buscaIt(T& dato, T* &result);
 
     void recorreInorden() {
         recorreInorden(raiz, 0);
@@ -280,7 +280,7 @@ bool AVL<T>::busca(T &ele, T* &result) {
  * @return TRUE O FALSE dependiendo si encuentra o no el dato en el avl    
  **/
 template<typename T>
-bool AVL<T>::buscaIt(T& dato, T& result) {
+bool AVL<T>::buscaIt(T& dato, T* &result) {
     NodoAVL<T> *aux = raiz; 
     while (aux != 0) {
         if (dato < aux->dato) {
@@ -289,7 +289,7 @@ bool AVL<T>::buscaIt(T& dato, T& result) {
             if (dato > aux->dato) {
                 aux = aux->der;
             } else {
-                result = aux->dato;
+                result = &(aux->dato);
                 return true;
             }
         }
