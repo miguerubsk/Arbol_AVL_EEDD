@@ -73,7 +73,7 @@ Las contribuciones son bienvenidas. Puedes abrir issues para sugerencias o error
 
 ## Licencia
 
-Distribuido bajo la Licencia MIT. Consulta el archivo `LICENSE.md` para más información.
+Distribuido bajo la Licencia GNU GPL v3. Consulta el archivo `LICENSE.md` para más información.
 
 ## Contacto
 
