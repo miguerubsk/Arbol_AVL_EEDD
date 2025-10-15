@@ -63,7 +63,7 @@ Arbol_AVL_EEDD/
 ├── fecha.h / fecha.cpp    # Clase para fechas y horas
 ├── random.h               # Generador de números aleatorios
 ├── main.cpp               # Ejemplo de uso y pruebas
-├── LICENSE                # Licencia MIT
+├── LICENSE                # Licencia GNU GPL v3
 └── README.md              # Este archivo
 ```
 
