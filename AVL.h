@@ -238,6 +238,7 @@ unsigned int AVL<T>::altura_aux(NodoAVL<T> *p, int nivel, unsigned int &result) 
             result=nivel;
         altura_aux(p->der,nivel+1,result);
     }
+	return result;
 }
 
 /**

@@ -109,6 +109,7 @@ bool Moto::operator==(const Moto &orig) {  //para ordenar las motos
 bool Moto::seActiva(Cliente *cli){
     estado=ACTIVA;
     usadoPor=cli;
+    return true;
 }
 /**
  * @brief funcion para desactivar la moto de un cliente
